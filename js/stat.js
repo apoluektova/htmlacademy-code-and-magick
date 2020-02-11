@@ -36,7 +36,7 @@ var getRandomInteger = function (min, max) {
 };
 
 var getColor = function (item) {
-  return (item === 'Вы') ? 'rgba(255, 0, 0, 1)' : 'hsl(240,' + getRandomInteger(25,100) + '%,' + getRandomInteger(13,90) + '%)';
+  return (item === 'Вы') ? 'rgba(255, 0, 0, 1)' : 'hsl(240,' + getRandomInteger(25, 100) + '%,' + getRandomInteger(13, 90) + '%)';
 };
 
 window.renderStatistics = function (ctx, names, times) {
