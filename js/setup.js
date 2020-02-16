@@ -10,7 +10,7 @@ var WIZARDS_NUMBER = 4;
 
 // Генерация случайного элемента массива
 var getRandomArrayItem = function (array) {
-  return array[Math.floor(Math.random() * array.length)]
+  return array[Math.floor(Math.random() * array.length)];
 };
 
 // Создание объекта для представления волшебника
