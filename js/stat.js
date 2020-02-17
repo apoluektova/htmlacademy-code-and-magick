@@ -29,8 +29,12 @@ var getRandomInteger = function (min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
+var getHslColor = function () {
+  return 'hsl(240,' + getRandomInteger(25, 100) + '%,' + getRandomInteger(13, 90) + '%)';
+};
+
 var getColor = function (item) {
-  return (item === 'Вы') ? 'rgba(255, 0, 0, 1)' : 'hsl(240,' + getRandomInteger(25, 100) + '%,' + getRandomInteger(13, 90) + '%)';
+  return (item === 'Вы') ? 'rgba(255, 0, 0, 1)' : getHslColor();
 };
 
 window.renderStatistics = function (ctx, names, times) {
@@ -44,9 +48,10 @@ window.renderStatistics = function (ctx, names, times) {
 
   for (var i = 0; i < names.length; i++) {
     var barColor = getColor(names[i]);
+    var barRelativeHeight = (BAR_MAX_HEIGHT - ((BAR_MAX_HEIGHT * times[i]) / maxTime));
     var contentCoordinateX = CLOUD_X + TEXT_GAP * 2 + (BAR_WIDTH + BAR_GAP) * i;
-    var timesCoordinateY = BAR_MAX_HEIGHT + GAP + (BAR_MAX_HEIGHT - ((BAR_MAX_HEIGHT * times[i]) / maxTime));
-    var barCoordinateY = BAR_MAX_HEIGHT + GAP * 2 + (BAR_MAX_HEIGHT - ((BAR_MAX_HEIGHT * times[i]) / maxTime));
+    var timesCoordinateY = BAR_MAX_HEIGHT + GAP + barRelativeHeight;
+    var barCoordinateY = BAR_MAX_HEIGHT + GAP * 2 + barRelativeHeight;
     var barHeight = (BAR_MAX_HEIGHT * times[i]) / maxTime;
     renderText(ctx, names[i], contentCoordinateX, CLOUD_HEIGHT - GAP, '#000', '16px PT Mono');
     renderText(ctx, Math.round(times[i]), contentCoordinateX, timesCoordinateY, '#000', '16px PT Mono');
