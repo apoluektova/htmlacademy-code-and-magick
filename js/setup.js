@@ -79,7 +79,7 @@ setupOpen.addEventListener('click', function () {
 });
 
 // Появление окна редактирования персонажа при нажатии на Enter
-setupOpen.addEventListener('keydown', function(evt) {
+setupOpen.addEventListener('keydown', function (evt) {
   if (evt.key === ENTER_KEY) {
     openPopup();
   }
@@ -92,7 +92,7 @@ setupClose.addEventListener('click', function () {
 });
 
 // Закрытие окна редактирования персонажа при нажатии на Enter при фокусе на крестик
-setupClose.addEventListener('keydown', function(evt) {
+setupClose.addEventListener('keydown', function (evt) {
   if (evt.key === ENTER_KEY) {
     closePopup();
   }
@@ -100,23 +100,23 @@ setupClose.addEventListener('keydown', function(evt) {
 
 // Отмена закрытия окна редактирования по Escape, если поле ввода имени в фокусе
 var userName = setup.querySelector('.setup-user-name');
-userName.addEventListener('focus', function() {
+userName.addEventListener('focus', function () {
   document.removeEventListener('keydown', onPopupEscPress);
 });
-userName.addEventListener('blur', function() {
+userName.addEventListener('blur', function () {
   document.addEventListener('keydown', onPopupEscPress);
-})
+});
 
 // Валидация поля ввода имени
 var userNameInput = setup.querySelector('.setup-user-name');
-userNameInput.addEventListener('invalid', function (evt) {
+userNameInput.addEventListener('invalid', function () {
   if (userNameInput.validity.tooShort) {
-      userNameInput.setCustomValidity('Имя должно состоять минимум из 2-х символов');
-    } else if (userNameInput.validity.tooLong) {
-      userNameInput.setCustomValidity('Имя не должно превышать 25-ти символов');
-    } else if (userNameInput.validity.valueMissing) {
-      userNameInput.setCustomValidity('Обязательное поле');
-    } else {
+    userNameInput.setCustomValidity('Имя должно состоять минимум из 2-х символов');
+  } else if (userNameInput.validity.tooLong) {
+    userNameInput.setCustomValidity('Имя не должно превышать 25-ти символов');
+  } else if (userNameInput.validity.valueMissing) {
+    userNameInput.setCustomValidity('Обязательное поле');
+  } else {
     userNameInput.setCustomValidity('');
   }
 });
@@ -131,21 +131,21 @@ var getWizardElementColor = function (element, color, input) {
 // Изменение цвета мантии волшебника по нажатию
 var wizardCoatColor = setup.querySelector('.setup-wizard .wizard-coat');
 var wizardCoatColorInput = setup.querySelector('input[name="coat-color"]');
-wizardCoatColor.addEventListener('click', function() {
-  getWizardElementColor (wizardCoatColor, COAT_COLORS, wizardCoatColorInput)
+wizardCoatColor.addEventListener('click', function () {
+  getWizardElementColor(wizardCoatColor, COAT_COLORS, wizardCoatColorInput);
 });
 
 // Изменение цвета глаз волшебника по нажатию
 var wizardEyesColor = setup.querySelector('.setup-wizard .wizard-eyes');
 var wizardEyesColorInput = setup.querySelector('input[name="eyes-color"]');
-wizardEyesColor.addEventListener('click', function() {
-  getWizardElementColor (wizardEyesColor, EYES_COLORS, wizardEyesColorInput)
+wizardEyesColor.addEventListener('click', function () {
+  getWizardElementColor(wizardEyesColor, EYES_COLORS, wizardEyesColorInput);
 });
 
 // Изменение цвета фаербола по нажатию
 var fireballColor = setup.querySelector('.setup-fireball-wrap');
 var fireballColorInput = setup.querySelector('input[name="fireball-color"]');
-fireballColor.addEventListener('click', function() {
+fireballColor.addEventListener('click', function () {
   var randomFireballColor = getRandomArrayItem(FIREBALL_COLORS);
   fireballColor.style.backgroundColor = randomFireballColor;
   fireballColorInput.value = randomFireballColor;
